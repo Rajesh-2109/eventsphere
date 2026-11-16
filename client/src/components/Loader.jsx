@@ -1,0 +1,1 @@
+export default function Loader({full=false}){return <div className={`loader-wrap ${full?'loader-full':''}`}><span className="spinner"/>Loading your experience…</div>;}

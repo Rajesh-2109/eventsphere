@@ -1,0 +1,69 @@
+.scanner-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 18px;
+}
+.scanner-card {
+  padding: 24px;
+}
+.scanner-heading {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.scanner-heading > svg {
+  color: #aa9aff;
+  width: 22px;
+}
+.scanner-heading h2 {
+  font: 700 18px Manrope;
+  margin: 0 0 5px;
+}
+.scanner-heading p {
+  font-size: 11px;
+  margin: 0;
+}
+.scanner-card form {
+  margin-top: 28px;
+}
+.scanner-tip {
+  font-size: 10px;
+  color: #7f89a5;
+  text-align: center;
+}
+#qr-reader {
+  border: 1px solid #333d5d !important;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0e1427 !important;
+}
+#qr-reader__dashboard_section_csr button {
+  background: #9581ff !important;
+  color: #17132d !important;
+  border: 0 !important;
+  border-radius: 7px !important;
+  padding: 7px 12px !important;
+}
+.scan-result {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px;
+  border-radius: 10px;
+  margin-top: 18px;
+  font-size: 11px;
+}
+.scan-result.success {
+  background: #173b36;
+  color: #67dfbd;
+}
+.scan-result.failure {
+  background: #462637;
+  color: #f4a0b1;
+}
+@media (max-width: 800px) {
+  .scanner-grid {
+    grid-template-columns: 1fr;
+  }
+}

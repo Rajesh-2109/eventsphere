@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';test('quantity is constrained to 1..10',()=>{const valid=n=>Number.isInteger(n)&&n>=1&&n<=10;assert.equal(valid(1),true);assert.equal(valid(10),true);assert.equal(valid(0),false);assert.equal(valid(11),false);assert.equal(valid(1.5),false);});
