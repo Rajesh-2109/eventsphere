@@ -55,7 +55,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(hpp());
 app.use(morgan("dev"));
 
-
 app.use("/api/v1", apiLimiter);
 app.use("/api/v1/auth", authLimiter);
 
@@ -75,7 +74,7 @@ const io = new Server(server, {
 attachSocket(io);
 app.set("io", io);
 
-app.get("/", (_req, res) => {
+app.get("/", (req, res) => {
   res.json({
     success: true,
     message: "EventSphere API is running",
