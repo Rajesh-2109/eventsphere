@@ -1,3 +1,52 @@
-import {Routes,Route} from 'react-router-dom';import Navbar from './components/Navbar';import ProtectedRoute from './components/ProtectedRoute';
-import Home from './pages/Home';import EventDetails from './pages/EventDetails';import Login from './pages/Login';import Register from './pages/Register';import MyTickets from './pages/MyTickets';import Profile from './pages/Profile';import OrganizerDashboard from './pages/OrganizerDashboard';import EventForm from './pages/EventForm';import Attendees from './pages/Attendees';import Scanner from './pages/Scanner';import AdminDashboard from './pages/AdminDashboard';import AdminEvents from './pages/AdminEvents';import AdminUsers from './pages/AdminUsers';import NoAccess from './pages/NoAccess';import './styles/layout.css';
-export default function App(){return <><Navbar/><Routes><Route path="/" element={<Home/>}/><Route path="/events/:id" element={<EventDetails/>}/><Route path="/login" element={<Login/>}/><Route path="/register" element={<Register/>}/><Route path="/no-access" element={<NoAccess/>}/><Route element={<ProtectedRoute/>}><Route path="/my-tickets" element={<MyTickets/>}/><Route path="/profile" element={<Profile/>}/></Route><Route element={<ProtectedRoute roles={['organizer']}/>}><Route path="/organizer/dashboard" element={<OrganizerDashboard/>}/><Route path="/organizer/events/new" element={<EventForm/>}/><Route path="/organizer/events/:id/edit" element={<EventForm/>}/><Route path="/organizer/events/:id/attendees" element={<Attendees/>}/><Route path="/organizer/scanner" element={<Scanner/>}/></Route><Route element={<ProtectedRoute roles={['admin']}/>}><Route path="/admin/dashboard" element={<AdminDashboard/>}/><Route path="/admin/events" element={<AdminEvents/>}/><Route path="/admin/users" element={<AdminUsers/>}/></Route><Route path="*" element={<Home/>}/></Routes></>;}
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Home from "./pages/Home";
+import EventDetails from "./pages/EventDetails";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import MyTickets from "./pages/MyTickets";
+import Profile from "./pages/Profile";
+import OrganizerDashboard from "./pages/OrganizerDashboard";
+import EventForm from "./pages/EventForm";
+import Attendees from "./pages/Attendees";
+import Scanner from "./pages/Scanner";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminEvents from "./pages/AdminEvents";
+import AdminUsers from "./pages/AdminUsers";
+import NoAccess from "./pages/NoAccess";
+import "./styles/layout.css";
+export default function App() {
+  return (
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/events/:id" element={<EventDetails />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/no-access" element={<NoAccess />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/my-tickets" element={<MyTickets />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
+        <Route element={<ProtectedRoute roles={["organizer"]} />}>
+          <Route path="/organizer/dashboard" element={<OrganizerDashboard />} />
+          <Route path="/organizer/events/new" element={<EventForm />} />
+          <Route path="/organizer/events/:id/edit" element={<EventForm />} />
+          <Route
+            path="/organizer/events/:id/attendees"
+            element={<Attendees />}
+          />
+          <Route path="/organizer/scanner" element={<Scanner />} />
+        </Route>
+        <Route element={<ProtectedRoute roles={["admin"]} />}>
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/events" element={<AdminEvents />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+        </Route>
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </>
+  );
+}
