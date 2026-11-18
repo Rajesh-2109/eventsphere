@@ -1,18 +1,9 @@
 import multer from "multer";
-import path from "path";
-import fs from "fs";
-const dir = path.resolve(process.cwd(), process.env.UPLOAD_DIR || "uploads");
-fs.mkdirSync(dir, { recursive: true });
-const storage = multer.diskStorage({
-  destination: (_r, _f, cb) => cb(null, dir),
-  filename: (_r, f, cb) =>
-    cb(
-      null,
-      `${Date.now()}-${Math.round(Math.random() * 1e9)}${path.extname(f.originalname).toLowerCase()}`,
-    ),
-});
+
+// Vercel's filesystem is read-only, so keep the file in memory
+// and store it as a data URL (see utils/bannerUrl.js).
 export const bannerUpload = multer({
-  storage,
+  storage: multer.memoryStorage(),
   limits: { fileSize: 2 * 1024 * 1024 },
   fileFilter: (_r, f, cb) =>
     ["image/jpeg", "image/png", "image/webp"].includes(f.mimetype)

@@ -2,6 +2,7 @@ import Event from "../models/Event.js";
 import Booking from "../models/Booking.js";
 import { ok } from "../utils/asyncHandler.js";
 import { notify, notifyMany } from "../utils/notify.js";
+import { fileToDataUrl } from "../utils/bannerUrl.js";
 const cats = [
   "Music",
   "Tech",
@@ -141,7 +142,7 @@ export async function createEvent(req, res) {
   const e = await Event.create({
     ...b,
     tickets,
-    banner: req.file ? `/uploads/${req.file.filename}` : b.banner || "",
+    banner: req.file ? fileToDataUrl(req.file) : b.banner || "",
     organizer: req.user._id,
     status: "pending",
   });
@@ -180,7 +181,7 @@ export async function updateEvent(req, res) {
   Object.assign(e, {
     ...b,
     tickets,
-    banner: req.file ? `/uploads/${req.file.filename}` : (b.banner ?? e.banner),
+    banner: req.file ? fileToDataUrl(req.file) : (b.banner ?? e.banner),
   });
   await e.save();
   const users = await Booking.find({
